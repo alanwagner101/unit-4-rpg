@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <meta charset="UTF-8">
+    <title>RPG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<body>
+
+    <div class="container">
+        <h1 class="display-4" id="title">Star Wars RPG</h1>
+      </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Choose your character!</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card heroes" id="hero1">
+                            <div class="card-body">
+                                <p>Warrick Davis</p>
+                                <img src="assets/images/ewok.jpg">
+                                <p id="ewokHP"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card heroes" id="hero2">
+                            <div class="card-body">
+                                <p>Good ol' Jar Jar</p>
+                                <img src="assets/images/jar-jar.jpeg">
+                                <p id="jar-jarHP"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card heroes" id="hero3">
+                            <div class="card-body">
+                                <p>This thing</p>
+                                <img src="assets/images/Salacious-B.Crumb.jpg">
+                                <p id="crumbHP"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card heroes" id="hero4">
+                            <div class="card-body">
+                                <p>Yogurt</p>
+                                <img src="assets/images/Yogurt.jpg">
+                                <p id="yogurtHP"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                        
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 onset-md-4">
+                <button id="attack">attack</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 id="title1">Choose your enemy!</h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card selectEnemy" id="selectEnemy1">
+                                <div class="card-body">
+                                    <p>Rancor</p>
+                                    <img src="assets/images/rancor.jpg">
+                                    <p>300</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card selectEnemy" id="selectEnemy2">
+                                <div class="card-body">
+                                    <p>The Death Star</p>
+                                    <img src="assets/images/14-Death-Star.jpg">
+                                    <p>750</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card selectEnemy" id="selectEnemy3">
+                                <div class="card-body">
+                                    <p>Sarlacc</p>
+                                    <img src="assets/images/sarlacc.png">
+                                    <p>250</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card selectEnemy" id="selectEnemy4">
+                                <div class="card-body">
+                                    <p>Like 1000 Storm Troopers</p>
+                                    <img src="assets/images/stormtroopers.jpg">
+                                    <p>1000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                        
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 id="title2">Enemy!</h2>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card fightEnemy" id="fightEnemy1" value="1">
+                                    <div class="card-body">
+                                        <p>Rancor</p>
+                                        <img src="assets/images/rancor.jpg">
+                                        <p id="rancorHP"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card fightEnemy" id="fightEnemy2" value="2">
+                                    <div class="card-body">
+                                        <p>The Death Star</p>
+                                        <img src="assets/images/14-Death-Star.jpg">
+                                        <p id="deathstarHP"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card fightEnemy" id="fightEnemy3" value="3">
+                                    <div class="card-body">
+                                        <p>Sarlacc</p>
+                                        <img src="assets/images/sarlacc.png">
+                                        <p id="sarlaccHP"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card fightEnemy" id="fightEnemy4" value="4">
+                                    <div class="card-body">
+                                        <p>Like 1000 Storm Troopers</p>
+                                        <img src="assets/images/stormtroopers.jpg">
+                                        <p id="stormtrooperHP"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 onset-md-4">
+                            <button id="restart">restart</button>
+                        </div>
+                    </div>
+                </div>
+
+</body>
+
+<script src="assets/javascript/game.js"></script>
+
+</html>
