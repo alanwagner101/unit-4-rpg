@@ -1,16 +1,8 @@
 $(document).ready(function() {
-    var ewok = $("#hero1");
-    var jar = $("#hero2");
-    var thing = $("#hero3");
-    var yogurt = $("#hero4");
     var ewokDam = $("#ewokHP");
     var jarDam = $("#jar-jarHP");
     var thingDam = $("#crumbHP");
     var yogurtDam = $("#yogurtHP");
-    var ewokHP = 125;
-    var jarHP = 150;
-    var thingHP = 100;
-    var yogurtHP = 175;
 
     var rancorSelect = $("#selectEnemy1");
     var deathstarSelect = $("#selectEnemy2");
@@ -25,10 +17,6 @@ $(document).ready(function() {
     var deathstarDam = $("#deathstarHP");
     var sarlaccDam = $("#sarlaccHP");
     var stormtrooperDam = $("#stormtrooperHP");
-    var rancorHP = 300;
-    var deathstarHP = 750;
-    var sarlaccHP = 250;
-    var stormtrooperHP = 1000;
 
     var attack = $("#attack");
     var restart = $("#restart");
@@ -37,6 +25,7 @@ $(document).ready(function() {
     var isHeroChosen = false;
     var isgameover = false;
 
+    var laser = $("audio#laser");
 
 
 
@@ -54,16 +43,21 @@ $(document).ready(function() {
 
     attack.css("display", "none");
     restart.css("display", "none");
+    $("#nomoreEnemies").css("display", "none");
+    $("#result").css("display", "none");
 
-    ewokDam.text(ewokHP);
-    jarDam.text(jarHP);
-    thingDam.text(thingHP);
-    yogurtDam.text(yogurtHP);
+    ewokDam.text(125);
+    jarDam.text(150);
+    thingDam.text(115);
+    yogurtDam.text(175);
 
-    rancorDam.text(rancorHP);
-    deathstarDam.text(deathstarHP);
-    sarlaccDam.text(sarlaccHP);
-    stormtrooperDam.text(stormtrooperHP);
+    rancorDam.text(300);
+    deathstarDam.text(750);
+    sarlaccDam.text(250);
+    stormtrooperDam.text(1000);
+
+    $(".herotext").css("display", "none");
+    $(".enemytext").css("display", "none");
 
     var h = 150; 
     var hd = 25;
@@ -91,7 +85,7 @@ $(document).ready(function() {
         } else if (this.id == "hero2") {
             h = 150;
         } else if (this.id == "hero3") {
-            h = 100;
+            h = 115;
         } else if (this.id == "hero4") {
             h = 175;
         };
@@ -104,10 +98,14 @@ $(document).ready(function() {
 
     $(".selectEnemy").on("click", function() {
         
+        
         if (isEnemyChosen) {
             return false;
-        }
+        };
         
+        d++;
+        console.log(d);
+
         $(this).css("display", "none");
 
         console.log($(this).val())
@@ -134,37 +132,58 @@ $(document).ready(function() {
             e = 1000;
             $("#stormtrooperHP").text(e);
             ed = 0;
-        };
+        }; 
         
 
         $("#title2").css("display", "block");
         $("#attack").css("display", "inline");
         console.log("this is e" + e)
-        return e, ed;
+        return e, ed, d;
     });
 
     $("#attack").on("click", function() {
 
+        if (d == 4) {
+            $("#nomoreEnemies").css("display", "inline");
+        };
+
         if (isgameover) {
             return false
         }
+        laser[0].volume = 0.2;
+        $("audio#laser")[0].play();
         
         i++;
 
+        if (ed > 1) {
         h -= ed;
         $(".hhp").text(h);
+        $(".herotext").text("hero takes " + ed + " damage!");
         e -= hd;
         $(".ehp").text(e)
+        $(".enemytext").text("enemy takes " + hd + " damage!");
+        $(".herotext").css("display", "block");
+        $(".enemytext").css("display", "block");
+        } else {
+            h -= ed;
+            $(".hhp").text(h);
+            $(".herotext").text("storm trooper misses");
+            e -= hd;
+            $(".ehp").text(e)
+            $(".enemytext").text("enemy takes " + hd + " damage!");
+            $(".herotext").css("display", "block");
+            $(".enemytext").css("display", "block");
+        }
 
-        if (i == 3) {
+        if (i === 3) {
             hd += 25;
-        } else if (i == 6) {
+        } else if (i === 6) {
             hd += 25;
-        } else if (i == 9) {
+        } else if (i === 9) {
             hd += 50;
-        } else if (i == 12) {
+        } else if (i === 12) {
             hd += 100;
-        } else if (i == 15) {
+        } else if (i === 15) {
             hd += 100;
         } else {
             hd = hd;
@@ -173,20 +192,15 @@ $(document).ready(function() {
         if (h <= 0) {
             $("#restart").css("display", "inline");
             $("#result").text("Game Over: You Lost!!");
+            $("#result").css("display", "block");
+            $("#attack").css("display","none");
             isgameover = true;
         } else if (e <= 0) {
-            d++;
             $(".fightEnemy").css("display", "none");
-            isEnemyChosen = false;
-        } else if (d == 4) {
-            $("#restart").css("display", "inline");
-            $("#result").text("Game Over: You Won!!")
-        } else {
-            d = d;
-        }
+            isEnemyChosen = false; }
 
     
-        return i, hd, ed, d;
+        return i, hd, ed;
     })
 
     $("#restart").on("click", function() {
@@ -206,25 +220,21 @@ $(document).ready(function() {
     
         attack.css("display", "none");
         restart.css("display", "none");
+        $("#nomoreEnemies").css("display", "none");
 
-        ewokHP = 125;
-        jarHP = 150;
-        thingHP = 100;
-        yogurtHP = 175;
-        rancorHP = 300;
-        deathstarHP = 750;
-        sarlaccHP = 250;
-        stormtrooperHP = 1000;
+        ewokDam.text(125);
+        jarDam.text(150);
+        thingDam.text(115);
+        yogurtDam.text(175);
     
-        ewokDam.text(ewokHP);
-        jarDam.text(jarHP);
-        thingDam.text(thingHP);
-        yogurtDam.text(yogurtHP);
-    
-        rancorDam.text(rancorHP);
-        deathstarDam.text(deathstarHP);
-        sarlaccDam.text(sarlaccHP);
-        stormtrooperDam.text(stormtrooperHP);
+        rancorDam.text(300);
+        deathstarDam.text(750);
+        sarlaccDam.text(250);
+        stormtrooperDam.text(1000);
+
+        $("#result").css("display", "none")
+        $(".herotext").css("display", "none");
+        $(".enemytext").css("display", "none");
     
         h = 150; 
         hd = 25;
@@ -237,6 +247,18 @@ $(document).ready(function() {
         isHeroChosen = false;
         isgameover = false;
 
+        return d;
+    })
+
+    $("#nomoreEnemies").on("click", function() {
+            $("#restart").css("display", "inline");
+            $("#result").text("Game Over: You Won!!");
+            $("#result").css("display", "block");
+            $("#nomoreEnemies").css("display", "none");
+            $("#attack").css("display","none");
+            $("#title1").css("display", "none");
+            $("#title2").css("display", "none");
+            isgameover = true;
     })
 
 
